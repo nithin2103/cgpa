@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<style>
+button{
+    height: 10%;
+}
+
+#cgpa{
+    border: 2px ;
+}
+h2{
+    margin: auto;
+    text-align: center;
+}
+</style>
+<body >
+    <h2>CGPA Calculator</h2>
+    <div id="mydiv" class="container">
+        <div class="row">
+            <label class="col-sm-5 col-form-label"> No of Semesters Completed : </label>
+            <select class="form-control col-sm-7 form-control-md ">
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+            </select><br><br>
+        </div>
+        <div id="div" class="row"></div>
+        <div class="row">
+            <button  col-sm-12" >Calculate CGPA</button><br><br>
+            <label class="col-sm-5 col-form-label">CGPA : </label>
+            <input id="cgpa" class="form-control col-sm-7 form-control-md " type="text" disabled>
+         </div>
+    </div>
+</body>
+<script>
+    var s = document.querySelector("select");
+    var d = document.querySelector("#div");
+    var b = document.querySelector("button");
+s.addEventListener("change",()=>{
+    var str='';
+    for(var i=1;i<=s.value;i++){
+        str=str+"<label class='col-sm-5 col-form-label'>Semester "+i+" : </label><input type='text' class='gpa form-control col-sm-7 form-control-md' name='gpa"+i+"' required><br><br>";
+    }
+    d.innerHTML=str;
+})
+b.addEventListener("click",()=>{
+    var arr = document.querySelectorAll(".gpa");
+    var sum=0;
+    arr.forEach((a)=>{
+        sum+=parseInt(a.value);
+    })
+    sum=sum/parseInt(s.value);
+    document.querySelector("#cgpa").setAttribute("value",sum);
+})
+
+
+</script>
+</html>
